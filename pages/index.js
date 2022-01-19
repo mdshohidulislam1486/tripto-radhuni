@@ -14,7 +14,7 @@ export default function Home() {
           >
             {data?.products.map((product) =>(<Grid
               item
-              md={4}
+              md={3}
               key={product?.name}
               >
                 <Card>
