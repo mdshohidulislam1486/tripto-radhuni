@@ -1,4 +1,4 @@
-import { Box, Card, Grid, List, ListItem, Typography } from '@mui/material';
+import { Box, Button, Card, Grid, List, ListItem, Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -33,6 +33,7 @@ const ProductScreen = () => {
                     </Grid>
                     <Grid item md={3} xs={12}>
                         <List>
+                            <ListItem> <Typography component='h1'> Name: {product.name} </Typography> </ListItem>
                             <ListItem> <Typography> Category: {product.category} </Typography> </ListItem>
                             <ListItem> <Typography> Type: {product.type}</Typography>  </ListItem>
                             <ListItem> <Typography>Rating:  {product?.raging} stars ({product?.numReviews})</Typography> </ListItem>
@@ -56,6 +57,11 @@ const ProductScreen = () => {
                                         <Grid item xs={6}> <Typography>Status</Typography></Grid>
                                         <Grid item xs={6}> <Typography>{product.countInStock > 0 ? 'In stock' : 'Unavailable Now'}</Typography></Grid>
                                     </Grid>
+                                </ListItem>
+                                <ListItem>
+                                    <Button fullWidth variant='contained' color='primary'>
+                                        Add to cart
+                                    </Button>
                                 </ListItem>
                             </List>
 
