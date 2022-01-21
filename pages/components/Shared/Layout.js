@@ -1,19 +1,61 @@
 
-import { AppBar, Box, Container, Link, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Container, createTheme, CssBaseline, Link, Switch, ThemeProvider, Toolbar, Typography } from '@mui/material';
 import { textAlign } from '@mui/system';
 import Head from 'next/head';
-import React from 'react';
+import React, { useContext } from 'react';
 import useStyles from '../../../utilities/styles';
 import NextLink from 'next/link'
+import { Store } from '../../../utilities/Store';
+import Cookies from 'js-cookie'
 
-const Layout = ({title, children}) => {
 
+
+const Layout = ({title, children, description}) => {
+    const {state, dispatch} = useContext(Store)
+    const {darkMode} = state;
+    const theme = createTheme({
+        typography:{
+            h1:{
+                fontSize:'1.6rem',
+                fontWeight:400,
+                margin:'1rem 0'
+            },
+            h2:{
+                fontSize:'1.4rem',
+                fontWeight:400,
+                margin:'1rem 0'
+            },
+            body1:{
+                fontWeight:'normal'
+            }
+           
+        },
+        palette:{
+         mode: darkMode ? 'dark' : 'light',
+         primary:{
+             main:'#f0c000'
+         },
+         secondary:{
+             main:'#208080'
+         }
+
+        }
+
+    })
     const classes = useStyles()
+    const darkModeChangeHandler = () =>{
+        dispatch({type: darkMode ? 'DARK_MODE_OFF' : 'DARK_MODE_ON' })
+        const newDdarkMode = !darkMode;
+        Cookies.set('darkMode', newDdarkMode ? 'ON': 'OFF')
+    }
     return (
-        <div>
+        <Box>
             <Head>
                 <title>{title? `${title} - Tripto Radhuni || We guarantee the quality!!`: 'Tripto Radhuni || We guarantee the quality!! '} </title>
+                {description && <meta name='description' content={description}></meta>}
             </Head>
+            <ThemeProvider theme={theme}>
+            <CssBaseline></CssBaseline>
             <AppBar position='static' className={classes.navbar}>
                 <Toolbar>
                     <NextLink href='/' passHref>
@@ -24,6 +66,7 @@ const Layout = ({title, children}) => {
                         </Link>
                     </NextLink>
                     <Box className={classes.grow}>
+                        <Switch checked={darkMode} onChange={darkModeChangeHandler}></Switch>
                         <NextLink href='/' passHref>
                             <Link style={{textDecoration:"none"}}>
                                     Cart 
@@ -46,7 +89,8 @@ const Layout = ({title, children}) => {
                     All rights reserved Tripto Radhuni
                 </Typography>
             </footer>
-        </div>
+            </ThemeProvider>
+        </Box>
     );
 };
 

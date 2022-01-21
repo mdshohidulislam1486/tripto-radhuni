@@ -16,8 +16,7 @@ const ProductScreen = () => {
         return <div> Product Not Found</div>
     }
     return (
-        <Box>
-            <Layout title={product.name}>
+            <Layout title={product.name} description={product.description}>
                 <Box  className={classes.section}>
                     <Link href={'/'} passHref>
                         <Typography sx={{cursor:'pointer'}}>Back to products</Typography>
@@ -33,7 +32,7 @@ const ProductScreen = () => {
                     </Grid>
                     <Grid item md={3} xs={12}>
                         <List>
-                            <ListItem> <Typography component='h1'> Name: {product.name} </Typography> </ListItem>
+                            <ListItem> <Typography component='h1' variant='h1'>{product.name} </Typography> </ListItem>
                             <ListItem> <Typography> Category: {product.category} </Typography> </ListItem>
                             <ListItem> <Typography> Type: {product.type}</Typography>  </ListItem>
                             <ListItem> <Typography>Rating:  {product?.raging} stars ({product?.numReviews})</Typography> </ListItem>
@@ -43,7 +42,7 @@ const ProductScreen = () => {
                         </List>
                     </Grid>
 
-                    <Grid itme md={3} xs={12}>
+                    <Grid item md={3} xs={12}>
                         <Card>
                             <List>
                                 <ListItem>
@@ -71,7 +70,6 @@ const ProductScreen = () => {
 
                 </Grid>
             </Layout>
-        </Box>
     );
 };
 
