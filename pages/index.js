@@ -1,7 +1,7 @@
-import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Link, Typography } from '@mui/material'
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import Layout from './components/Shared/Layout'
 import data from '../utilities/data'
-import NextLink from 'next/link'
+import Link from 'next/link'
 
 
 export default function Home() {
@@ -21,8 +21,7 @@ export default function Home() {
               key={product?.name}
               >
                 <Card>
-                <NextLink href={`/proudct/${product.slug}`} passHref>
-                  <Link>
+                <Link href={`productDetails/${product.slug}`} passHref>
                   <CardActionArea>
                     <CardMedia component='img' image= {product.image}
                     title={product?.name}
@@ -34,8 +33,8 @@ export default function Home() {
                       </Typography>
                     </CardContent>
                   </CardActionArea>
+                
                   </Link>
-                  </NextLink>
                   <CardActions>
                     <Typography>
                       ${product?.price}
