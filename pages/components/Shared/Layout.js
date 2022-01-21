@@ -6,13 +6,13 @@ import React from 'react';
 import useStyles from '../../../utilities/styles';
 import NextLink from 'next/link'
 
-const Layout = ({children}) => {
+const Layout = ({title, children}) => {
 
     const classes = useStyles()
     return (
         <div>
             <Head>
-                <title>Tripto Radhuni || We guarantee the quality!!  </title>
+                <title>{title? `${title} - Tripto Radhuni || We guarantee the quality!!`: 'Tripto Radhuni || We guarantee the quality!! '} </title>
             </Head>
             <AppBar position='static' className={classes.navbar}>
                 <Toolbar>
