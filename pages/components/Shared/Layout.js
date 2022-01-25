@@ -1,6 +1,5 @@
 
 import { AppBar, Box, Container, createTheme, CssBaseline, Link, Switch, ThemeProvider, Toolbar, Typography } from '@mui/material';
-import { textAlign } from '@mui/system';
 import Head from 'next/head';
 import React, { useContext } from 'react';
 import useStyles from '../../../utilities/styles';
