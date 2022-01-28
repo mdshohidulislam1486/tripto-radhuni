@@ -2,7 +2,7 @@ const { makeStyles } = require("@mui/styles");
 
 const useStyles = makeStyles({
     navbar:{
-        backgroundColor:'#002',
+        backgroundColor:'#208080',
         '& a':{
             color:'#ffffff',
             marginLeft:10,
@@ -26,7 +26,9 @@ const useStyles = makeStyles({
 
     footer:{
         marginTop:'3rem',
-        textAlign:"center"
+        textAlign:"center",
+        padding:'2em',
+        backgroundColor:'#208080'
     },
     section:{
         margin:'2rem 0'
