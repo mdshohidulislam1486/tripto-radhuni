@@ -10,6 +10,7 @@ const data ={
             countInStock:20,
             id:1,
             slug:'desi-chicken',
+            brand:'deshi',
             description:'Fresh local chicken'
         },
         {
@@ -19,6 +20,7 @@ const data ={
             price:500,
             slug:'cow-meat',
             id:2,
+            brand:'deshi',
             type:'Deshi Chicken',
             numReviews:12,
             countInStock:10,
@@ -32,6 +34,7 @@ const data ={
             slug:'goat-meat',
             type:'Black bengal',
             numReviews:15,
+            brand:'deshi',
             countInStock:10,
             id:3,
             description:'Deshi local goat meat'
@@ -43,6 +46,7 @@ const data ={
             price:239,
             slug:'pakistani-chicken',
             id:4,
+            brand:'deshi',
             type:'Pakistani Chicken',
             numReviews:8,
             countInStock:80,
@@ -55,6 +59,7 @@ const data ={
             price:200,
             slug:'local-duck',
             id:5,
+            brand:'deshi',
             type:'Deshi local duck',
             numReviews:22,
             countInStock:5,
@@ -65,6 +70,7 @@ const data ={
             category:'Beef',
             image:'/Images/importedDuck.jpg',
             price:110,
+            brand:'deshi',
             slug:'imported-duck',
             id:6,
             type:'Imported Duck',

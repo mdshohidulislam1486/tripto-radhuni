@@ -1,10 +1,12 @@
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import Layout from './components/Shared/Layout'
-import data from '../utilities/data'
 import Link from 'next/link'
+import db from '../utilities/db'
+import Product from '../models/Product'
 
 
-export default function Home() {
+export default function Home(props) {
+  const {products} = props;
   return (
     <Layout>
         <Box>
@@ -13,7 +15,7 @@ export default function Home() {
           <Grid container spacing={3}
           sx={{justifyContent:'center'}}
           >
-            {data?.products?.map((product) =>(<Grid
+            {products?.map((product) =>(<Grid
               item
               sm={6}
               md={4}
@@ -50,4 +52,17 @@ export default function Home() {
       </Box>
     </Layout>
   )
+}
+
+export async function getServerSideProps(){
+  await db.connect()
+  const products = await Product.find({}).lean()
+  await db.disconnect();
+  return {
+    props:{
+      products: products.map(db.convertDocToObj),
+
+    }
+  }  
+
 }
