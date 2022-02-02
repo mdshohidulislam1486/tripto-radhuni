@@ -1,18 +1,31 @@
 import { Button, Card, Grid, List, ListItem, Typography } from '@mui/material';
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import Product from '../../models/Product';
 import db from '../../utilities/db';
+import { Store } from '../../utilities/Store';
 import useStyles from '../../utilities/styles';
 import Layout from '../components/Shared/Layout';
 
 const ProductScreen = (props) => {
+    const {dispatch} = useContext(Store)
     const { product } = props;
   const classes = useStyles();
   if (!product) {
     return <div>Product Not Found</div>;
   }
+
+  const addToCartHandler = async ()=>{
+    const {data} = await axios.get(`api/products/${product._id}`);
+    if(data.contetStock <= 0 ){
+        window.alert('Sorry, This product is out of stock')
+    }
+    dispatch({type:"CART_ADD_TO_ITEM", payload: {...product, quantity:1 }})
+  }
+  
+
     return (
         <Layout title={product.name} description={product.description}>
         <div className={classes.section}>
@@ -81,7 +94,9 @@ const ProductScreen = (props) => {
                   </Grid>
                 </ListItem>
                 <ListItem>
-                  <Button fullWidth variant="contained" color="primary">
+                  <Button fullWidth variant="contained" color="primary"
+                  onClick={addToCartHandler}
+                  >
                     Add to cart
                   </Button>
                 </ListItem>
