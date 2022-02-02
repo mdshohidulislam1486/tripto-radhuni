@@ -4,8 +4,9 @@ import NextLink from 'next/link';
 import React, { useContext } from 'react';
 import { Store } from '../utilities/Store';
 import Layout from './components/Shared/Layout';
+import dynamic from 'next/dynamic';
 
-export default function CartScreen() {
+function CartScreen() {
     const { state } = useContext(Store);
     const {
       cart: { cartItems },
@@ -98,3 +99,6 @@ export default function CartScreen() {
   )}
 </Layout>
 }
+
+
+export default dynamic(()=> Promise.resolve(CartScreen), {ssr: false})
