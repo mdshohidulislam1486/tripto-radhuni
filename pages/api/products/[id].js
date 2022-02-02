@@ -3,13 +3,14 @@ import Product from "../../../models/Product";
 import db from "../../../utilities/db";
 
 
-const handler = nc()
+const handler = nc();
 
-  handler.get( async(req, res) => {
-      await db.connect()
-      const product = await Product.findById(req.query.id)
-      await db.disconnect();
-      res.send(product)
-  })
+handler.get(async (req, res) => {
+  await db.connect();
+  const product = await Product.findById(req.query.id);
+  await db.disconnect();
+  res.send(product);
+});
+
 
   export default handler

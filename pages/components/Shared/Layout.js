@@ -66,11 +66,20 @@ const Layout = ({title, children, description}) => {
                     </NextLink>
                     <Box className={classes.grow}>
                         <Switch checked={darkMode} onChange={darkModeChangeHandler}></Switch>
-                            <Link  style={{textDecoration:"none"}}>
-                                    {cart.cartItems.lenght > 0 ? <Badge badgeContent={cart.cartItems.lenght}
-                                    color='secondary'
-                                    ></Badge>: 'Cart' } 
-                            </Link>
+                        <NextLink href="/cart" passHref>
+                                <Link>
+                                {cart.cartItems.length > 0 ? (
+                                    <Badge
+                                    color="secondary"
+                                    badgeContent={cart.cartItems.length}
+                                    >
+                                    Cart
+                                    </Badge>
+                                ) : (
+                                    'Cart'
+                                )}
+                                </Link>
+                        </NextLink>
                         <NextLink href='/' passHref>
                             <Link style={{textDecoration:"none"}}>     
                                     Login
