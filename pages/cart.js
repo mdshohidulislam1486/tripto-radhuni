@@ -5,19 +5,34 @@ import React, { useContext } from 'react';
 import { Store } from '../utilities/Store';
 import Layout from './components/Shared/Layout';
 import dynamic from 'next/dynamic';
+import axios from 'axios';
 
 function CartScreen() {
-    const { state } = useContext(Store);
+    const { state, dispatch } = useContext(Store);
     const {
       cart: { cartItems },
     } = state;
+
+    const updateCartHanndler = async (item, quantity) => {
+      const { data } = await axios.get(`/api/products/${item?._id}`);
+      if (data.countInStock <= 0) {
+        window.alert('Sorry. Product is out of stock');
+        return;
+        
+      }
+      dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
+    }
+    const removeItemHandler = (item) =>{
+      dispatch({type:'CART_REMOVE_ITEM', payload: item})
+    }
+
   return <Layout title="Shopping Cart">
   <Typography component="h1" variant="h1">
     Shopping Cart
   </Typography>
   {cartItems.length === 0 ? (
     <div>
-      Cart is empty. <NextLink href="/">Go shopping</NextLink>
+      Cart is empty !!! ➜ <NextLink href="/" passHref><Link>Go shopping</Link></NextLink>
     </div>
   ) : (
     <Grid container spacing={1}>
@@ -57,7 +72,7 @@ function CartScreen() {
                     </NextLink>
                   </TableCell>
                   <TableCell align="right">
-                    <Select value={item.quantity}>
+                    <Select value={item.quantity} onChange={(e) => updateCartHanndler(item, e.target.value)}> 
                       {[...Array(item.countInStock).keys()].map((x) => (
                         <MenuItem key={x + 1} value={x + 1}>
                           {x + 1}
@@ -67,7 +82,9 @@ function CartScreen() {
                   </TableCell>
                   <TableCell align="right">${item.price}</TableCell>
                   <TableCell align="right">
-                    <Button variant="contained" color="secondary">
+                    <Button variant="contained" color="secondary"
+                    onClick={() => removeItemHandler(item)}
+                    >
                       x
                     </Button>
                   </TableCell>

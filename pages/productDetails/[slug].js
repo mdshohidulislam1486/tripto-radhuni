@@ -11,7 +11,7 @@ import useStyles from '../../utilities/styles';
 import Layout from '../components/Shared/Layout';
 
 const ProductScreen = (props) => {
-  const router = useRouter()
+    const router = useRouter()
     const {dispatch} = useContext(Store)
     const { product } = props;
   const classes = useStyles();
