@@ -23,7 +23,6 @@ export default function Home(props) {
       return;
       
     }
-    
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity: quantity } });
     router.push('/cart')
   };
