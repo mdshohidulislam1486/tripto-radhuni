@@ -3,7 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Store } from '../utilities/Store';
 import useStyles from '../utilities/styles';
 import Layout from './components/Shared/Layout';
@@ -12,10 +12,12 @@ export default function Login() {
   const router = useRouter()
   const {redirect} = router.query; // login? redirect = /shipping
   const {state, dispatch} = useContext(Store)
- /*  const {userInfo} = state; */
- /*  if(userInfo){
-    router.push('/')
-  } */
+  const {userInfo} = state;
+  useEffect(() => {
+    if (userInfo) {
+      router.push('/');
+    }
+  }, []);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const classes = useStyles();
@@ -26,9 +28,9 @@ export default function Login() {
         email,
         password,
       });
-      /* dispatch({type:'USER_LOGIN', payload:data})
-      Cookies.set('userInfo', data) */
-      router.push(redirect || '/')
+      dispatch({ type: 'USER_LOGIN', payload: data });
+      Cookies.set('userInfo', data);
+      router.push(redirect || '/');
     } catch (err) {
       alert(err.response.data ? err.response.data.message : err.message);
     }
