@@ -29,7 +29,7 @@ export default function Login() {
         password,
       });
       dispatch({ type: 'USER_LOGIN', payload: data });
-      Cookies.set('userInfo', data);
+      Cookies.set('userInfo',  JSON.stringify({...data}));
       router.push(redirect || '/');
     } catch (err) {
       alert(err.response.data ? err.response.data.message : err.message);
@@ -63,7 +63,7 @@ export default function Login() {
                  <Button variant='contained' type='submit' fullWidth color='primary' >Login</Button>
                 </ListItem>
                 <ListItem>
-                 Don not have an account? &nbsp; <NextLink  href='/register' passHref><Link to='/register' sx={{cursor:'pointer'}}>Register</Link></NextLink>
+                 Do not have an account? &nbsp; <NextLink  href='/register' passHref><Link to='/register' sx={{cursor:'pointer'}}>Register</Link></NextLink>
                 </ListItem>
               
           </List>
