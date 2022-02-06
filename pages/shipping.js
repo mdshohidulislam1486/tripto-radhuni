@@ -5,7 +5,7 @@ import React, { useContext, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Store } from '../utilities/Store';
 import useStyles from '../utilities/styles';
-import CheckOutWizard from './components/checkOutWizard';
+import CheckOutWizard from './components/CheckoutWizard';
 import Layout from './components/Shared/Layout';
 
 
