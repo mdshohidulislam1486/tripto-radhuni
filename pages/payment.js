@@ -81,6 +81,7 @@ export default function Payment() {
                 fullWidth
                 type="button"
                 variant="contained"
+                style={{backgroundColor:"#f75"}}
                 onClick={() => router.push('/shipping')}
               >
                 Back

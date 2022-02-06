@@ -37,8 +37,8 @@ const ProductScreen = (props) => {
         <Layout title={product.name} description={product.description}>
         <div className={classes.section}>
           <NextLink href="/" passHref>
-            <Link>
-              <Typography sx={{cursor:'pointer'}}>back to products</Typography>
+            <Link style={{ textDecoration:'none'}}>
+              <Typography variant='h6' sx={{cursor:'pointer'}}>Back to products</Typography>
             </Link>
           </NextLink>
         </div>

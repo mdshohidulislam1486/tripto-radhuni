@@ -1,8 +1,11 @@
 import {  Step, StepLabel, Stepper } from '@mui/material';
 import React from 'react';
+import useStyles from '../../utilities/styles';
 
-export default function CheckOutWizard({activeStep =0}) {
-  return <Stepper activeStep={activeStep} alternativeLabel>
+export default function CheckoutWizard({activeStep =0}) {
+    const classes  = useStyles()
+    
+  return <Stepper className={classes.transparentBackground} activeStep={activeStep} alternativeLabel>
     {
         ['Login', 'Shipping Address', 'Payment Method', 'Place Order'].map((step) =>(
             <Step key={step}>
