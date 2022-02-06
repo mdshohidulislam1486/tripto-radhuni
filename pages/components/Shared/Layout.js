@@ -12,8 +12,8 @@ import { useRouter } from 'next/router';
 
 const Layout = ({title, children, description}) => {
     const router = useRouter();
-    const {state, dispatch} = useContext(Store)
-    const {darkMode, cart, userInfo} = state;
+    const { state, dispatch } = useContext(Store);
+    const { darkMode, cart, userInfo } = state;
  
     const theme = createTheme({
         typography:{
@@ -98,7 +98,6 @@ const Layout = ({title, children, description}) => {
                                 )}
                                 </Link>
                         </NextLink>
-                        <NextLink href='/' passHref>
                         {userInfo ? (
                             <>
                             <Button
@@ -121,18 +120,13 @@ const Layout = ({title, children, description}) => {
                                 My account
                                 </MenuItem>
                                 <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
-                                </Menu>
+                            </Menu>
                             </>
                         ) : (
                             <NextLink href="/login" passHref>
-                                {userInfo? <Button>{userInfo.name}</Button>:
-                                <Link href='/login'>Login</Link>
-                                }
-                            
+                            <Link>Login</Link>
                             </NextLink>
                         )}
-                            
-                        </NextLink>
                     </Box>
                    
                 </Toolbar>

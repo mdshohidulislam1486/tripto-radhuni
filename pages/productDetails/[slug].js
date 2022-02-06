@@ -1,7 +1,7 @@
-import { Button, Card, Grid, List, ListItem, Typography } from '@mui/material';
+import { Button, Card, Grid, Link, List, ListItem, Typography } from '@mui/material';
 import axios from 'axios';
 import Image from 'next/image';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 import Product from '../../models/Product';
@@ -36,11 +36,11 @@ const ProductScreen = (props) => {
     return (
         <Layout title={product.name} description={product.description}>
         <div className={classes.section}>
-          <Link href="/" passHref>
+          <NextLink href="/" passHref>
             <Link>
               <Typography sx={{cursor:'pointer'}}>back to products</Typography>
             </Link>
-          </Link>
+          </NextLink>
         </div>
         <Grid container spacing={1}>
           <Grid item md={6} xs={12}>
